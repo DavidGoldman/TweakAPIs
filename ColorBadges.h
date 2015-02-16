@@ -24,9 +24,11 @@
   if ([cb isEnabled]) {
     int color = [[cb sharedInstance] colorForIcon:icon];
     badge.tintColor = UIColorFromRGB(color);
+    UIColor *textColor = ([cb isDarkColor:color]) ? [UIColor whiteColor] : [UIColor blackColor];
+    badge.textColor = textColor;
 
     if ([cb areBordersEnabled]) {
-      UIColor *borderColor = ([cb isDarkColor:color]) ? [UIColor whiteColor] : [UIColor blackColor];
+      UIColor *borderColor = textColor;
       // Add border.
     }
   } else {
