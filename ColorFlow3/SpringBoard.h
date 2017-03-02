@@ -1,4 +1,4 @@
-// ColorFlow 2 Public SpringBoard API Headers.
+// ColorFlow 3 Public SpringBoard API Headers.
 
 // Analyzed Info struct. Having a struct and Obj-C classes is a bit redundant, but I have no plans
 // to change this at the moment. Sorry.
@@ -9,7 +9,7 @@ struct AnalyzedInfo {
   BOOL darkBG;
 };
 
-// Contains color info about an analysis.
+// Contains color info about an analysis. Colors are 0xRRGGBB.
 @interface CFWAnalyzedInfo : NSObject
 @property(nonatomic, assign) int bgColor;
 @property(nonatomic, assign) int primaryColor;
@@ -27,7 +27,7 @@ struct AnalyzedInfo {
                artwork:(UIImage *)artwork
       analysisComplete:(CFWAnalyzedInfo *)analyzedInfo;
 
-// Called if the current song doesn't have artwork. Note that ColorFlow 2 might wait a second or so
+// Called if the current song doesn't have artwork. Note that ColorFlow 3 might wait a second or so
 // for artwork to potentially load before this is called.
 - (void)nowPlayingInfoHadNoArtwork:(NSDictionary *)info;
 @end
@@ -39,7 +39,7 @@ struct AnalyzedInfo {
 // Adds a delegate, but if a song is already playing, don't notify the delegate of it.
 - (void)addAnalysisDelegate:(id<CFWAnalysisDelegate>)delegate;
 
-// Adds a delegate and notify it if a song is already playing. Note that ColorFlow 2 analysis is
+// Adds a delegate and notify it if a song is already playing. Note that ColorFlow 3 analysis is
 // deferred (lazy), so either:
 //   1. The analysis is already complete and this method will immediately notify your delegate.
 //   2. The analysis isn't already complete - this method will not immediately notify your delegate.
@@ -63,9 +63,9 @@ struct AnalyzedInfo {
 @end
 
 // Allows you to easily colorize media controls.
-@interface MPUSystemMediaControlsView : UIView
+@interface MPULockScreenMediaControlsView : UIView
 @end
-@interface MPUSystemMediaControlsView (ColorFlow2)
+@interface MPULockScreenMediaControlsView (ColorFlow)
 - (void)cfw_colorize:(CFWColorInfo *)colorInfo;
 - (void)cfw_revert;
 @end
